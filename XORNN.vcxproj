@@ -29,11 +29,18 @@
     <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="Network.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Downloads\t10k-images-idx3-ubyte.gz" />
+    <None Include="..\..\..\Downloads\t10k-labels-idx1-ubyte.gz" />
+    <None Include="..\..\..\Downloads\train-images-idx3-ubyte.gz" />
+    <None Include="..\..\..\Downloads\train-labels-idx1-ubyte.gz" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{94CDD113-BF1C-43C6-BCAA-3EE970D83FBF}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <ProjectName>DigitsNN</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

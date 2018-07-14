@@ -9,7 +9,7 @@ public:
 	Network();
 
 	void Train(std::list<Matrix> &inputs, std::list<Matrix> &expected, int &trainingIterations);
-	void Run(Matrix &inputs);
+	void Run(std::list<Matrix> &inputs);
 
 	~Network();
 

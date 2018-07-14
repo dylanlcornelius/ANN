@@ -65,10 +65,21 @@ void Network::Train(std::list<Matrix> &inputs, std::list<Matrix> &expected, int 
 }
 
 //Runs the network with a given set of inputs
-void Network::Run(Matrix &inputs) {
+void Network::Run(std::list<Matrix> &inputs) {
 	if (IsTrained) {
-		Feedforward();
-		Outputs.PrintMatrix();
+		auto inputsA = inputs.begin();
+		while (inputsA != inputs.end()) {
+			Inputs = Matrix(inputsA->matrix);
+
+			std::cout << "test: ";
+			Inputs.PrintMatrix();
+
+			Feedforward();
+
+			std::cout << "result: ";
+			Outputs.PrintMatrix();
+			std::cout << std::endl;
+		}
 	}
 }
 
