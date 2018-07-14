@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="Main.h" />
     <ClInclude Include="Matrix.h" />
+    <ClInclude Include="mnist.h" />
     <ClInclude Include="Network.h" />
   </ItemGroup>
   <ItemGroup>

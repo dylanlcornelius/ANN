@@ -1,5 +1,9 @@
 #include "Main.h"
 
+#define USE_MNIST_LOADER
+#define MNIST_DOUBLE
+#include "mnist.h"
+
 #include "Network.h"
 #include "Matrix.h"
 #include <vector>
