@@ -4,7 +4,6 @@
 #include <iostream>
 
 Matrix::Matrix(){}
-
 Matrix::~Matrix(){}
 
 //Set number of rows and colums
@@ -160,11 +159,6 @@ void Matrix::PrintMatrix() {
 
 //Matrix application of a given function to every element
 Matrix Matrix::ApplyRandomize() {
-
-	//PrintMatrix();
-
-	//std::cout << rows << columns << std::endl;
-
 	Matrix result(rows, columns);
 
 	for (int i = 0; i < rows; i++) {
@@ -172,7 +166,6 @@ Matrix Matrix::ApplyRandomize() {
 			//std::cout << "i: " << i << ", j: " << j << std::endl;
 			result.matrix[i][j] = Randomize(matrix[i][j]);
 		}
-		//std::cout << std::endl;
 	}
 
 	return result;

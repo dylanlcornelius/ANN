@@ -31,7 +31,6 @@ public:
 	Matrix ApplySigmoidP();
 
 	~Matrix();
-
 private:
 	double DotProduct(Matrix const &matrix2, int &m1Row, int &m2Col);
 
