@@ -13,7 +13,7 @@ int main(int argc, char *argb[]) {
 	
 	int HIDDEN_COUNT = 4;
 	int OUTPUT_COUNT = 1;
-	double INITIAL_VALUES = .01;
+	double INITIAL_VALUES = .001;
 	int trainingIterations = 500;
 
 	Matrix i1 = { std::vector<std::vector<double> >(1, std::vector<double>({0, 0})) };
