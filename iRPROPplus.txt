@@ -1,0 +1,84 @@
+	public double UpdateiWeightPlus(gradients, *prevGradient, *learningRate, prevWeightChange, error, prevError)
+        {
+            int change = Sign(gradients * prevGradient);
+            double weightChange = 0;
+
+            if (change > 0)
+            {
+                learningRate  = Math.Min(learningRate * RPROPConst.PositiveEta, _maxStep);
+
+                weightChange = Sign(gradients) * learningRate ;
+
+                prevGradient = gradients;
+            }
+            else if (change < 0)
+            {
+                learningRate = Math.Max(learningRate * RPROPConst.NegativeEta, RPROPConst.DeltaMin);
+
+		if (error > prevError)				//global error			
+                    weightChange = -prevWeightChange;		//only use for prevWeightChange
+                
+                prevGradient = 0;
+            }
+            else if (change == 0)
+            {
+								//no need to check max or min step
+
+                weightChange = Sign(gradients) * learningRate;
+
+                prevGradient = gradients;			//cut down to one prevGrad = grad with returns
+            }
+	    
+            return weightChange;
+        }
+
+	<< weightChange << learningRate, prevGradient		//must return
+
+	prevWeightChange = weightChange;
+	lastError = error;
+
+//how to return a layer?
+
+Matrix weights; //outside
+double prevError; //outside
+Matrix weightChanges; //don't store
+class Layer {
+    Matrix gradients;
+    Matrix prevGradients;
+    Matrix learningRates;
+    Matrix prevWeightChanges;
+    double prevError
+
+    private Backprop() {}
+    private int Sign(double v) {}
+    private Matrix iResilientPlus(isWorse) {error > prevError}
+    public void updateWeights(error) {}
+}
+
+	private int Sign(double v)
+        {
+            if (Math.Abs(v) < _zeroTolerance)
+                return 0;
+            if (v > 0)
+                return 1;
+            return -1;
+        }
+	public double iResilientPlus(isWorse)	//isWorse = error > prevError
+        {
+            int change = Sign(gradients * prevGradient);
+            double weightChange = 0;
+
+	    if (change < 0)
+            {
+                learningRate = Math.Max(learningRate * RPROPConst.NegativeEta, RPROPConst.DeltaMin);
+		if (isWorse)	
+                    weightChange = -prevWeightChange;
+                prevGradient = 0;
+            } else {
+		if (change > 0)
+                    learningRate = Math.Min(learningRate * RPROPConst.PositiveEta, _maxStep);
+                weightChange = Sign(gradients) * learningRate;
+                prevGradient = gradients;
+            }	    
+            return weightChange;
+        }
