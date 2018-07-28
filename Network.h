@@ -9,7 +9,7 @@ class Network
 public:
 	Network();
 
-	void Train(std::list<Matrix> &inputs, std::list<Matrix> &expected, int hiddenCount, int outputCount, int trainingIterations);
+	void Train(std::list<Matrix> &inputs, std::list<Matrix> &expected, int hiddenCount, int outputCount, double initialValues, int trainingIterations);
 	void Run(Matrix &inputs);
 
 	~Network();

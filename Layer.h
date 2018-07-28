@@ -6,7 +6,7 @@ class Layer
 {
 public:
 	Layer();
-	void Create(int rows, int columns);
+	void Create(int rows, int columns, double initialValues);
 
 	double const ZERO_TOLERANCE = 0.00000001;
 	double const NEGATIVE_ETA = 0.5;
@@ -17,11 +17,17 @@ public:
 	Matrix Weights;
 	Matrix Gradients;
 	Matrix PrevGradients;
-	Matrix Bias;
-	Matrix BiasGradients;
-	Matrix Activations;
 	Matrix LearningRates;
 	Matrix PrevUpdates;
+
+	Matrix Bias;
+	Matrix BiasGradients;
+	Matrix BiasPrevGradients;
+	Matrix BiasLearningRates;
+	Matrix BiasPrevUpdates;
+
+	Matrix Activations;
+	
 
 	void Init();
 	Matrix Feedforward(Matrix &in);
@@ -32,5 +38,6 @@ public:
 private:
 	int Sign(double x);
 	double iResilientPlus(int i, int j, bool isWorse);
+	double BiasiResilientPlus(int i, int j, bool isWorse);
 };
 

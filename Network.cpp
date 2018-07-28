@@ -12,11 +12,11 @@ Network::Network(){}
 Network::~Network(){}
 
 //Trains the network for a given set of inputs
-void Network::Train(std::list<Matrix> &inputs, std::list<Matrix> &expected, int hiddenCount, int outputCount, int trainingIterations) {
+void Network::Train(std::list<Matrix> &inputs, std::list<Matrix> &expected, int hiddenCount, int outputCount, double initialValues, int trainingIterations) {
 	//HiddenLayer = Layer(inputs.front().columns, hiddenCount);
 	//OutputLayer = Layer(hiddenCount, outputCount);
-	HiddenLayer.Create(inputs.front().columns, hiddenCount);
-	OutputLayer.Create(hiddenCount, outputCount);
+	HiddenLayer.Create(inputs.front().columns, hiddenCount, initialValues);
+	OutputLayer.Create(hiddenCount, outputCount, initialValues);
 
 	std::srand(time(NULL));
 	HiddenLayer.Init();
@@ -35,7 +35,7 @@ void Network::Train(std::list<Matrix> &inputs, std::list<Matrix> &expected, int 
 			Hidden = HiddenLayer.Feedforward(Inputs);
 			Outputs = OutputLayer.Feedforward(Hidden);
 
-			OutputLayer.Backpropagate(Outputs - Expected, Hidden);
+			OutputLayer.Backpropagate((Outputs - Expected).MultiplyScalar(-1), Hidden);
 			HiddenLayer.Backpropagate(OutputLayer.BiasGradients.Dot(OutputLayer.Weights.Transpose()), Inputs);
 
 			mse += MSE(Expected) * MSE(Expected);

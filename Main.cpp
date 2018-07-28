@@ -11,9 +11,10 @@ Main::~Main(){}
 
 int main(int argc, char *argb[]) {
 	
-	int HIDDEN_COUNT = 16;
+	int HIDDEN_COUNT = 4;
 	int OUTPUT_COUNT = 1;
-	int trainingIterations = 2000;
+	double INITIAL_VALUES = .01;
+	int trainingIterations = 500;
 
 	Matrix i1 = { std::vector<std::vector<double> >(1, std::vector<double>({0, 0})) };
 	Matrix i2 = { std::vector<std::vector<double> >(1, std::vector<double>({1, 0})) };
@@ -28,7 +29,7 @@ int main(int argc, char *argb[]) {
 	std::list<Matrix> expected = {e1, e2, e3, e4};
 
 	Network xor;
-	xor.Train(inputs, expected, HIDDEN_COUNT, OUTPUT_COUNT, trainingIterations);
+	xor.Train(inputs, expected, HIDDEN_COUNT, OUTPUT_COUNT, INITIAL_VALUES, trainingIterations);
 
 	Matrix r1 = { std::vector<std::vector<double> >(1, std::vector<double>({ 1, 1 })) };
 	xor.Run(r1);
