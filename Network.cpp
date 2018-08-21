@@ -40,6 +40,9 @@ void Network::Train(std::list<Matrix> &inputs, std::list<Matrix> &expected, int 
 
 			mse += MSE(Expected) * MSE(Expected);
 
+			Outputs.PrintMatrix();
+			std::cout << std::endl;
+
 			++inputsA;
 			++expectedA;
 		}
@@ -68,6 +71,11 @@ void Network::Run(Matrix &inputs) {
 		Outputs = OutputLayer.Feedforward(Hidden);
 		PrintTest(Inputs);
 	}
+
+	//HiddenLayer.Weights.PrintMatrix();
+	//std::cout << std::endl;
+	//OutputLayer.Weights.PrintMatrix();
+	//std::cout << std::endl;
 }
 
 double Network::MSE(Matrix &expected) {
@@ -97,7 +105,8 @@ void Network::PrintTest(Matrix &inputs) {
 	std::cout << "test: ";
 	inputs.PrintMatrix();
 	std::cout << "result: ";
-	Outputs.Step().PrintMatrix();
+	//Outputs.Step().PrintMatrix();
+	Outputs.PrintMatrix();
 	std::cout << std::endl;
 }
 

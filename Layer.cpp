@@ -38,7 +38,7 @@ Matrix Layer::Feedforward(Matrix &in) {
 //Calculate the gradient descents for the network weights.
 void Layer::Backpropagate(Matrix &error, Matrix &in) {
 	BiasGradients = error * Activations.ApplySigmoidP();
-	Gradients = Gradients - (in.Transpose().Dot(BiasGradients)); //subtract instead of add
+	Gradients = (in.Transpose().Dot(BiasGradients)); //subtract instead of add
 }
 
 int Layer::Sign(double x)
@@ -105,11 +105,6 @@ void Layer::UpdateWeights(bool isWorse) {
 	PrevUpdates = updates;
 	BiasPrevUpdates = biasUpdates;
 
-	Weights = Weights + updates;
-	Bias = Bias + biasUpdates;
-
-	Weights.PrintMatrix();
-	std::cout << std::endl;
-	//Bias.PrintMatrix();
-	std::cout << std::endl;
+	Weights = Weights + updates.MultiplyScalar(.0001);
+	Bias = Bias + biasUpdates.MultiplyScalar(.0001);
 }
